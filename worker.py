@@ -16,9 +16,12 @@ LOCK_PATH = bot.DB_PATH.with_name("worker.lock")
 
 def acquire_single_worker():
     lock_file = open(LOCK_PATH, "a+b")
-    lock_file.seek(0)
-    if lock_file.read(1) == b"":
-        lock_file.seek(0)
+    # Do not read the lock byte here: on Windows, reading a byte-range locked
+    # by the already-running worker raises PermissionError before we can
+    # report the normal "another worker" condition. Ensure a byte exists by
+    # checking the file length, then attempt the actual lock below.
+    lock_file.seek(0, os.SEEK_END)
+    if lock_file.tell() == 0:
         lock_file.write(b"0")
         lock_file.flush()
     lock_file.seek(0)
