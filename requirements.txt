@@ -1,0 +1,5 @@
+requests>=2.32,<3
+pandas>=2.2,<4
+streamlit>=1.40,<2
+streamlit-autorefresh>=1.0.1,<2
+python-dotenv>=1.0,<2

@@ -1,0 +1,8 @@
+.env
+.streamlit/secrets.toml
+__pycache__/
+.venv/
+trading_state.db
+trading_state.db-shm
+trading_state.db-wal
+worker.lock

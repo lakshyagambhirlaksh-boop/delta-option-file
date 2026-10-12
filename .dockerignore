@@ -1,0 +1,8 @@
+.env
+.env.*
+.git
+.streamlit/secrets.toml
+.venv
+__pycache__
+trading_state.db*
+worker.lock
